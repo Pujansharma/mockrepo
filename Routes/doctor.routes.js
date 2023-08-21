@@ -22,5 +22,13 @@ doctorRouter.get("/get/appointement", async(req,res)=>{
         res.status(500).json(error.message);
     }
 })
+doctorRouter.delete("/delete/appointement/:id", async(req,res)=>{
+    try {
+       await doctorModel.findByIdAndDelete(req.params.id);
+        res.status(204).send("data deleted");
+    } catch (error) {
+        res.status(500).json({error:"Error deleteing "})
+    }
+})
 
 module.exports={doctorRouter}
